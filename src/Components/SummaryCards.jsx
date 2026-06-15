@@ -9,8 +9,26 @@ const highest = Math.max(...students.map((s) => s.points));
 const avgCompletion =
 students.reduce((sum, s) => sum + s.completion, 0) / total;
 
+const mostImproved = students.reduce((best, curr) => {
+const improvement =
+curr.performance[curr.performance.length - 1] - curr.performance[0];
+
+if (!best) return curr;
+
+const bestImprovement =
+best.performance[best.performance.length - 1] - best.performance[0];
+
+return improvement > bestImprovement ? curr : best;
+}, null);
+
 return ( <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
 
+<div className="bg-white dark:bg-gray-800 dark:text-white p-4 rounded shadow hover:shadow-md transition">
+  <h3 className="text-sm text-gray-500 dark:text-gray-400">
+    Most Improved
+  </h3>
+  <p className="text-xl font-bold">{mostImproved.name}</p>
+</div>
 
   <div className="bg-white dark:bg-gray-800 dark:text-white p-4 rounded shadow hover:shadow-md transition">
     <h3 className="text-sm text-gray-500 dark:text-gray-400">

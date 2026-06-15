@@ -7,6 +7,30 @@ const [search, setSearch] = useState("");
 const [filter, setFilter] = useState("all");
 const [selected, setSelected] = useState(null);
 
+const exportCSV = () => {
+const headers = ["Name", "Points", "Courses", "Completion", "Streak"];
+
+const rows = students.map((s) => [
+s.name,
+s.points,
+s.courses,
+s.completion,
+s.streak,
+]);
+
+let csvContent =
+"data:text/csv;charset=utf-8," +
+[headers, ...rows].map((e) => e.join(",")).join("\n");
+
+const link = document.createElement("a");
+link.setAttribute("href", csvContent);
+link.setAttribute("download", "leaderboard.csv");
+document.body.appendChild(link);
+
+link.click();
+};
+
+
 let sorted = [...students].sort((a, b) => b.points - a.points);
 
 sorted = sorted.filter((s) =>
@@ -40,6 +64,14 @@ return ( <div className="bg-white dark:bg-gray-800 dark:text-white p-4 rounded s
       <option value="10">Top 10</option>
     </select>
   </div>
+
+
+<button
+  onClick={exportCSV}
+  className="mb-4 px-4 py-2 bg-green-500 text-white rounded"
+>
+  Export CSV
+</button>
 
   <table className="w-full text-left">
     <thead>
