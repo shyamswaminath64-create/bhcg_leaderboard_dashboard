@@ -1,4 +1,6 @@
 import Leaderboard from "./components/Leaderboard";
+import SummaryCards from "./components/SummaryCards";
+import { students } from "./data/students";
 
 function App() {
   return (
@@ -7,6 +9,7 @@ function App() {
         Learning Leaderboard Dashboard
       </h1>
 
+      <SummaryCards students={students} />
       <Leaderboard />
     </div>
   );

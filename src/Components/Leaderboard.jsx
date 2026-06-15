@@ -1,18 +1,12 @@
-import { useState } from "react";
 
-const students = [
-  { name: "Aarav", points: 950, courses: 5, completion: 90, streak: 12 },
-  { name: "Priya", points: 870, courses: 4, completion: 85, streak: 9 },
-  { name: "Rahul", points: 820, courses: 6, completion: 88, streak: 10 },
-  { name: "Sneha", points: 780, courses: 3, completion: 80, streak: 7 },
-  { name: "Karan", points: 720, courses: 2, completion: 75, streak: 5 },
-  { name: "Meera", points: 690, courses: 3, completion: 78, streak: 6 },
-  { name: "Rohit", points: 650, courses: 2, completion: 70, streak: 4 },
-];
+import { useState } from "react";
+import PerformanceChart from "./PerformanceChart";
+import { students } from "../data/students";
 
 export default function Leaderboard() {
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("all");
+  const [selected, setSelected] = useState(null);
 
   let sorted = [...students].sort((a, b) => b.points - a.points);
 
@@ -63,18 +57,19 @@ export default function Leaderboard() {
 
         <tbody>
           {sorted.map((s, index) => (
-            <tr
-              key={index}
-              className={`border-b ${
-                index === 0
-                  ? "bg-yellow-100"
-                  : index === 1
-                  ? "bg-gray-200"
-                  : index === 2
-                  ? "bg-orange-100"
-                  : ""
-              }`}
-            >
+                    <tr
+            key={index}
+            onClick={() => setSelected(s)}
+            className={`cursor-pointer border-b ${
+              index === 0
+                ? "bg-yellow-100"
+                : index === 1
+                ? "bg-gray-200"
+                : index === 2
+                ? "bg-orange-100"
+                : ""
+            }`}
+          >
               <td>{index + 1}</td>
               <td>{s.name}</td>
               <td>{s.points}</td>
@@ -85,6 +80,26 @@ export default function Leaderboard() {
           ))}
         </tbody>
       </table>
+              {selected && (
+  <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+    <div className="bg-white p-6 rounded shadow w-[400px]">
+      <h2 className="text-xl font-bold mb-2">{selected.name}</h2>
+      <p>Points: {selected.points}</p>
+      <p>Courses: {selected.courses}</p>
+      <p>Completion: {selected.completion}%</p>
+      <p>Streak: {selected.streak}</p>
+
+      <PerformanceChart data={selected.performance} />
+
+      <button
+        onClick={() => setSelected(null)}
+        className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+      >
+        Close
+      </button>
+    </div>
+  </div>
+)}
     </div>
   );
 }
