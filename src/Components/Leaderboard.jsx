@@ -21,7 +21,7 @@ export default function Leaderboard() {
   }
 
   return (
-    <div className="mt-6 bg-white p-4 rounded shadow">
+<div className="bg-white p-4 rounded shadow hover:shadow-md transition">
       <h2 className="text-xl font-semibold mb-4">Leaderboard</h2>
 
       {/* Search + Filter */}
@@ -61,16 +61,18 @@ export default function Leaderboard() {
             key={index}
             onClick={() => setSelected(s)}
             className={`cursor-pointer border-b ${
-              index === 0
-                ? "bg-yellow-100"
-                : index === 1
-                ? "bg-gray-200"
-                : index === 2
-                ? "bg-orange-100"
-                : ""
-            }`}
+  index === 0
+    ? "bg-yellow-200 font-semibold"
+    : index === 1
+    ? "bg-gray-300"
+    : index === 2
+    ? "bg-orange-200"
+    : "hover:bg-gray-100"
+}`}
           >
-              <td>{index + 1}</td>
+              <td>
+  {index === 0 ? "🥇" : index === 1 ? "🥈" : index === 2 ? "🥉" : index + 1}
+</td>
               <td>{s.name}</td>
               <td>{s.points}</td>
               <td>{s.courses}</td>
