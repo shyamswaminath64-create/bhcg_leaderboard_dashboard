@@ -1,21 +1,56 @@
-<<<<<<< HEAD
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Learning Leaderboard Dashboard
 
-Currently, two official plugins are available:
+A modern, interactive frontend dashboard to visualize learner performance, rankings, and progress insights.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+The Learning Leaderboard Dashboard helps users:
 
-## React Compiler
+Compare learner performance
+Track progress over time
+Analyze trends using visual insights
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The entire application is built using React with mock data, without any backend, emphasizing frontend architecture and user experience.
 
-## Expanding the ESLint configuration
+Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-=======
-# bhcg_leaderboard_dashboard
-Learning Leaderboard Dashboard - BITS Hyderabad Consulting Group Round 2
->>>>>>> 53a6737d75b87870e529d90022cd1bbbee434719
+ Leaderboard
+Ranked list of learners based on points
+Highlights top 3 performers with visual distinction
+Clean and responsive table layout:
+Search & Filtering
+Search learners by name
+Filter leaderboard by:
+Top 5
+Top 10
+All learners
+
+ Learner Details Panel
+Click on any learner to view detailed stats
+Includes:
+Points
+Courses completed
+Assignment completion %
+Learning streak
+Interactive modal UI
+
+Performance Analytics
+Visualizes learner progress using charts
+Displays weekly performance trends
+Built using Recharts
+
+Dashboard Summary
+Total learners
+Average points
+Highest score
+Average completion %
+
+Bonus Features
+Dark mode toggle (with persistent preference)
+Most improved learner (based on performance growth)
+Export leaderboard data as CSV
+
+ Tech Stack
+React.js (Vite)
+Tailwind CSS (for styling)
+Recharts (for data visualization)
+JavaScript (ES6+)

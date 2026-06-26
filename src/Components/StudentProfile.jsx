@@ -1,0 +1,71 @@
+import { useNavigate, useParams } from "react-router-dom";
+import { students } from "../data/students";
+
+export default function StudentProfile() {
+  const navigate = useNavigate();
+  const { name } = useParams();
+
+  const student = students.find((s) => s.name === name);
+
+  if (!student) {
+    return <h2 className="text-center mt-10">Student not found</h2>;
+  }
+
+  return (
+    <div className="min-h-screen bg-gray-100 p-8">
+
+      <button
+        onClick={() => navigate("/")}
+        className="mb-8 bg-blue-600 text-white px-5 py-2 rounded hover:bg-blue-700"
+      >
+        ← Back to Dashboard
+      </button>
+
+      <div className="bg-white rounded-xl shadow-lg p-8 max-w-3xl mx-auto">
+
+        <h1 className="text-4xl font-bold mb-2">
+          {student.name}
+        </h1>
+
+        <p className="text-gray-500 mb-8">
+          Student Performance Summary
+        </p>
+
+        <div className="grid grid-cols-2 gap-6">
+
+          <div className="bg-blue-100 rounded-lg p-5">
+            <h3 className="font-semibold">Questions Attempted</h3>
+            <p className="text-3xl font-bold">{student.questions}</p>
+          </div>
+
+          <div className="bg-green-100 rounded-lg p-5">
+            <h3 className="font-semibold">Correct Answers</h3>
+            <p className="text-3xl font-bold">{student.correct}</p>
+          </div>
+
+          <div className="bg-red-100 rounded-lg p-5">
+            <h3 className="font-semibold">Wrong Answers</h3>
+            <p className="text-3xl font-bold">{student.wrong}</p>
+          </div>
+
+          <div className="bg-yellow-100 rounded-lg p-5">
+            <h3 className="font-semibold">Accuracy</h3>
+            <p className="text-3xl font-bold">{student.accuracy}%</p>
+          </div>
+
+          <div className="bg-purple-100 rounded-lg p-5">
+            <h3 className="font-semibold">Total Time</h3>
+            <p className="text-3xl font-bold">{student.time}</p>
+          </div>
+
+          <div className="bg-indigo-100 rounded-lg p-5">
+            <h3 className="font-semibold">Average Time / Question</h3>
+            <p className="text-3xl font-bold">{student.avgTime}</p>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  );
+}
